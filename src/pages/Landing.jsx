@@ -23,7 +23,14 @@ import {
   Clock,
   ChevronRight,
   Zap,
-  Sparkles
+  Sparkles,
+  Camera,
+  XCircle,
+  FileText,
+  TrendingUp,
+  Users,
+  AlertTriangle,
+  BookOpen
 } from 'lucide-react';
 
 const Landing = () => {
@@ -41,6 +48,7 @@ const Landing = () => {
         seconds: 0
     });
     const [isLaunched, setIsLaunched] = useState(false);
+    const [expandedProblems, setExpandedProblems] = useState({});
 
     // FIXED LAUNCH DATE - Same for all users
     // Set this to your actual launch date (1.5 months from now would be approximately 2/15/2026)
@@ -113,6 +121,13 @@ const Landing = () => {
         }
     };
 
+    const toggleProblemExpand = (problemId) => {
+        setExpandedProblems(prev => ({
+            ...prev,
+            [problemId]: !prev[problemId]
+        }));
+    };
+
     const JoinWaitListButton = ({ variant = 'default' }) => {
         const buttonClass = variant === 'primary' ? 'btn-primary' : 
                            variant === 'large' ? 'btn-large' : 'btn-default';
@@ -154,10 +169,10 @@ const Landing = () => {
                             Overview
                         </button>
                         <button 
-                            className={activeSection === 'features' ? 'active' : ''}
-                            onClick={() => scrollToSection('features')}
+                            className={activeSection === 'problems' ? 'active' : ''}
+                            onClick={() => scrollToSection('problems')}
                         >
-                            Features
+                            Problems We Solve
                         </button>
                         <button 
                             className={activeSection === 'workflows' ? 'active' : ''}
@@ -194,7 +209,7 @@ const Landing = () => {
                         <div className="mobile-timer">
                             <Clock size={16} />
                             <span>
-                                {isLaunched ? '🚀 Launched!' : `Launching in ${timeLeft.days} days`}
+                                {isLaunched ? 'Launched!' : `Launching in ${timeLeft.days} days`}
                             </span>
                         </div>
                         <button 
@@ -204,10 +219,10 @@ const Landing = () => {
                             Overview
                         </button>
                         <button 
-                            className={activeSection === 'features' ? 'active' : ''}
-                            onClick={() => scrollToSection('features')}
+                            className={activeSection === 'problems' ? 'active' : ''}
+                            onClick={() => scrollToSection('problems')}
                         >
-                            Features
+                            Problems We Solve
                         </button>
                         <button 
                             className={activeSection === 'workflows' ? 'active' : ''}
@@ -242,7 +257,7 @@ const Landing = () => {
                             <div className="modal-timer">
                                 <Clock size={20} />
                                 <span>
-                                    {isLaunched ? '🎉 Now Available!' : `Launching in ${timeLeft.days} days`}
+                                    {isLaunched ? 'Now Available!' : `Launching in ${timeLeft.days} days`}
                                 </span>
                             </div>
                             <button 
@@ -373,7 +388,9 @@ const Landing = () => {
                         </div>
                     ) : (
                         <div className="launched-banner">
-                            <div className="launched-icon">🚀</div>
+                            <div className="launched-icon">
+                                <Zap size={28} />
+                            </div>
                             <div className="launched-text">
                                 <h3>Wazi is Now Live!</h3>
                                 <p>Start transforming your school's discipline management today</p>
@@ -381,7 +398,7 @@ const Landing = () => {
                         </div>
                     )}
 
-                    <h1 className="hero-title-gradient">
+                    <h1 className="hero-title">
                         Wazi Smart Discipline Management System
                     </h1>
                     
@@ -396,46 +413,217 @@ const Landing = () => {
                         <JoinWaitListButton variant="primary" />
                         <button 
                             className="secondary-btn"
-                            onClick={() => scrollToSection('details')}
+                            onClick={() => scrollToSection('problems')}
                         >
-                            View Platform Details
+                            View Problems We Solve
                             <ChevronRight size={16} />
                         </button>
                     </div>
                 </div>
             </section>
 
-            {/* Features Section */}
-            <section className="features" id="features">
-                <h2>System Purpose</h2>
-                <div className="features-grid">
-                    <div className="feature-card">
-                        <div className="feature-icon">
-                            <Zap size={24} />
+            {/* Problems We Solve Section - REPLACING Features Section */}
+            <section className="problems-section" id="problems">
+                <h2>Problems We Solve</h2>
+                <p className="section-subtitle">Addressing real challenges in school discipline management</p>
+                
+                <div className="problems-grid">
+                    {/* Problem 1 - The main scenario */}
+                    <div className="problem-card main-problem">
+                        <div className="problem-header">
+                            <div className="problem-tag ">
+                              
+                                <span>Common Scenario</span>
+                            </div>
+                            <h3>Accountability Gaps in He-Said-She-Said Situations</h3>
                         </div>
-                        <h3>Real-time Tracking</h3>
-                        <p>Track student behavior as it happens with instant reporting</p>
+                        
+                        <div className="problem-content">
+                            <p className="problem-description">
+                                <strong>Think of this scenario:</strong> A teacher punishes a student harshly, 
+                                and it creates a whole drama where everyone has their own perspective. 
+                                Some side with the teacher, others with the student, and administrators 
+                                are stuck in the middle trying to piece together what really happened.
+                            </p>
+                            
+                            {!expandedProblems['main'] && (
+                                <div className="problem-preview">
+                                    <p>Without proper documentation, accountability is lost, trust is damaged, and conflicts remain unresolved...</p>
+                                    <button 
+                                        className="learn-more-btn"
+                                        onClick={() => toggleProblemExpand('main')}
+                                    >
+                                        Learn More
+                                        <ChevronRight size={14} />
+                                    </button>
+                                </div>
+                            )}
+                            
+                            {expandedProblems['main'] && (
+                                <div className="problem-details">
+                                    <div className="scenario-issues">
+                                        <div className="issue">
+                                            <div className="issue-icon">
+                                                <XCircle size={20} />
+                                            </div>
+                                            <div className="issue-content">
+                                                <h4>Lost Accountability</h4>
+                                                <p>No clear record of whether the incident was properly reported</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="issue">
+                                            <div className="issue-icon">
+                                                <XCircle size={20} />
+                                            </div>
+                                            <div className="issue-content">
+                                                <h4>Missing Evidence</h4>
+                                                <p>No documentation or proof of what actually occurred</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="issue">
+                                            <div className="issue-icon">
+                                                <XCircle size={20} />
+                                            </div>
+                                            <div className="issue-content">
+                                                <h4>Action Discrepancy</h4>
+                                                <p>Disciplinary actions don't match what was initially recorded</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="wazi-solution">
+                                        <div className="solution-badge">
+                                            <Shield size={16} />
+                                            <span>Wazi Solution</span>
+                                        </div>
+                                        <h4>Restoring Accountability Through Documentation</h4>
+                                        <p>
+                                            Wazi ensures transparency by requiring teachers to document whether incidents 
+                                            were reported, whether evidence was provided, and verifying that disciplinary 
+                                            actions match what was recorded during incident reporting.
+                                        </p>
+                                        
+                                        {/* Fun Fact */}
+                                        <div className="fun-fact">
+                                            <div className="fun-fact-icon">
+                                                <Sparkles size={18} />
+                                            </div>
+                                            <div className="fun-fact-content">
+                                                <p>
+                                                    <strong>Fun Fact:</strong> Our mobile app lets teachers take photos or upload images 
+                                                    directly during incident reporting for immediate evidence capture!
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button 
+                                        className="show-less-btn"
+                                        onClick={() => toggleProblemExpand('main')}
+                                    >
+                                        Show Less
+                                        <ChevronRight size={14} className="rotated" />
+                                    </button>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                    <div className="feature-card">
-                        <div className="feature-icon">
-                            <Sparkles size={24} />
+
+                    {/* Other Problems */}
+                    {[
+                        {
+                            id: 'paper',
+                            icon: <FileText size={24} />,
+                            title: 'Paper-Based Chaos & Lost Records',
+                            short: 'Discipline forms get lost, incomplete, or buried in filing cabinets...',
+                            full: 'Discipline forms get lost, incomplete, or buried in filing cabinets, making historical tracking impossible and creating administrative nightmares when records are needed for parent meetings or policy reviews.',
+                            solution: 'Centralized digital system with complete incident history, easy search functionality, and automated backup to ensure no record is ever lost.'
+                        },
+                        {
+                            id: 'data',
+                            icon: <TrendingUp size={24} />,
+                            title: 'No Data for Decision Making',
+                            short: 'Administrators lack insights into behavior patterns...',
+                            full: 'Administrators lack insights into behavior patterns, repeat offenders, or effective interventions. Without data, it\'s impossible to identify trends, measure intervention effectiveness, or make informed decisions about school-wide discipline policies.',
+                            solution: 'Comprehensive analytics dashboard showing trends, patterns, and intervention effectiveness with customizable reports and real-time data visualization.'
+                        },
+                        {
+                            id: 'inconsistent',
+                            icon: <Users size={24} />,
+                            title: 'Inconsistent Discipline Application',
+                            short: 'Different teachers apply different standards...',
+                            full: 'Different teachers apply different standards, leading to perceptions of unfair treatment among students and parents. This inconsistency undermines trust in the school\'s disciplinary system and can lead to complaints and conflicts.',
+                            solution: 'Standardized workflows and tier-based consequence guidelines that ensure consistency across all teachers and administrators, with automated escalation paths.'
+                        },
+                        {
+                            id: 'admin',
+                            icon: <BookOpen size={24} />,
+                            title: 'Administrative Overload',
+                            short: 'School admins spend excessive time on discipline paperwork...',
+                            full: 'School admins spend excessive time on discipline paperwork instead of strategic leadership. Manual tracking, follow-ups, and report generation consume hours that could be better spent on educational leadership and student support.',
+                            solution: 'Automated workflows and reporting that reduce administrative burden by up to 70%, freeing administrators for more meaningful educational leadership.'
+                        }
+                    ].map(problem => (
+                        <div key={problem.id} className="problem-card">
+                            <div className="problem-icon">
+                                {problem.icon}
+                            </div>
+                            <h3>{problem.title}</h3>
+                            
+                            <div className="problem-content">
+                                <p className="problem-description">
+                                    {expandedProblems[problem.id] ? problem.full : problem.short}
+                                </p>
+                                
+                                {!expandedProblems[problem.id] && (
+                                    <button 
+                                        className="learn-more-btn"
+                                        onClick={() => toggleProblemExpand(problem.id)}
+                                    >
+                                        Learn More
+                                        <ChevronRight size={14} />
+                                    </button>
+                                )}
+                                
+                                {expandedProblems[problem.id] && (
+                                    <div className="problem-details">
+                                        <div className="wazi-solution">
+                                            <div className="solution-badge">
+                                                <Shield size={16} />
+                                                <span>Wazi Solution</span>
+                                            </div>
+                                            <p>{problem.solution}</p>
+                                        </div>
+                                        
+                                        <button 
+                                            className="show-less-btn"
+                                            onClick={() => toggleProblemExpand(problem.id)}
+                                        >
+                                            Show Less
+                                            <ChevronRight size={14} className="rotated" />
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                        <h3>Data-Driven Decisions</h3>
-                        <p>Make informed decisions based on recorded information and patterns</p>
-                    </div>
-                    <div className="feature-card">
-                        <div className="feature-icon">
-                            <Zap size={24} />
+                    ))}
+                </div>
+                
+                {/* Multi-platform access note */}
+                <div className="platform-access-note">
+                    <div className="access-content">
+                        <div className="access-icon">
+                            <Camera size={24} />
                         </div>
-                        <h3>Automated Management</h3>
-                        <p>Manage discipline steps automatically with workflow automation</p>
-                    </div>
-                    <div className="feature-card">
-                        <div className="feature-icon">
-                            <Sparkles size={24} />
+                        <div>
+                            <h4>Accessible Anywhere, Anytime</h4>
+                            <p>
+                                Wazi is available as both a web app and mobile app, making it easy to manage discipline 
+                                on-the-go and ensure documentation happens in real-time, not after the fact.
+                            </p>
                         </div>
-                        <h3>Complete Transparency</h3>
-                        <p>Keep all involved parties informed with real-time updates</p>
                     </div>
                 </div>
             </section>
@@ -642,7 +830,9 @@ const Landing = () => {
                         </div>
                     ) : (
                         <div className="launched-celebration">
-                            <div className="celebration-icon">🎉</div>
+                            <div className="celebration-icon">
+                                <Zap size={24} />
+                            </div>
                             <div className="celebration-text">
                                 <h4>Wazi is Now Live!</h4>
                                 <p>Join schools already transforming their discipline management</p>
@@ -689,8 +879,11 @@ const Landing = () => {
                         <button onClick={() => scrollToSection('overview')}>
                             Overview
                         </button>
-                        <button onClick={() => scrollToSection('features')}>
-                            Features
+                        <button onClick={() => scrollToSection('problems')}>
+                            Problems We Solve
+                        </button>
+                        <button onClick={() => scrollToSection('workflows')}>
+                            Workflows
                         </button>
                         <button onClick={() => scrollToSection('details')}>
                             Platform Details
@@ -704,7 +897,7 @@ const Landing = () => {
                         <Clock size={14} />
                         <span>
                             {isLaunched 
-                                ? '🎉 Now Available!'
+                                ? 'Now Available!'
                                 : `Launching on `
                             }
                         </span>

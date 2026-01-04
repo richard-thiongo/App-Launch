@@ -1678,3 +1678,431 @@ body.modal-open {
     font-size: 1.3rem;
   }
 }
+
+
+/* Problems We Solve Section */
+.problems-section {
+  padding: 8rem 2rem;
+  position: relative;
+  z-index: 1;
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.problems-section h2 {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text);
+}
+
+.problems-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 25%;
+  width: 50%;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.problems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Problem Cards */
+.problem-card {
+  background: rgba(30, 41, 59, 0.7);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.problem-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(139, 92, 246, 0.2);
+}
+
+.problem-card.main-problem {
+  grid-column: 1 / -1;
+  background: rgba(30, 41, 59, 0.9);
+  border: 2px solid var(--primary);
+}
+
+.problem-header {
+  margin-bottom: 1.5rem;
+}
+
+.problem-tag {
+  display: inline-block;
+  background-color: #7c3aeda3;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.problem-card h3 {
+  color: var(--text);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.3;
+}
+
+.problem-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+}
+
+.problem-card:hover .problem-icon {
+  background: var(--primary);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.problem-card:hover .problem-icon svg {
+  color: white;
+}
+
+.problem-icon svg {
+  color: var(--primary);
+  transition: var(--transition);
+}
+
+/* Problem Content */
+.problem-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.problem-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.problem-preview {
+  background: rgba(15, 23, 42, 0.5);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border-left: 3px solid var(--primary);
+}
+
+.problem-preview p {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+/* Learn More & Show Less Buttons */
+.learn-more-btn, .show-less-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  transition: var(--transition);
+  margin-top: auto;
+}
+
+.learn-more-btn:hover, .show-less-btn:hover {
+  color: var(--secondary);
+  gap: 0.75rem;
+}
+
+.learn-more-btn svg, .show-less-btn svg {
+  transition: transform 0.3s ease;
+}
+
+.learn-more-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.show-less-btn svg.rotated {
+  transform: rotate(90deg);
+}
+
+.show-less-btn:hover svg.rotated {
+  transform: rotate(90deg) translateX(3px);
+}
+
+/* Problem Details (expanded state) */
+.problem-details {
+  animation: fadeInUp 0.5s ease;
+}
+
+.scenario-issues {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.issue {
+  display: flex;
+  gap: 1rem;
+  background: rgba(15, 23, 42, 0.8);
+  padding: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+}
+
+.issue:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary);
+}
+
+.issue-icon {
+  font-size: 1.5rem;
+  color: #ef4444;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.issue-content h4 {
+  color: var(--text);
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.issue-content p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Wazi Solution */
+.wazi-solution {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  padding: 1.75rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.solution-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #06b5d489;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.wazi-solution h4 {
+  color: var(--text);
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+}
+
+.wazi-solution p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Fun Fact */
+.fun-fact {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  padding: 1.25rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.fun-fact-icon {
+  font-size: 1.25rem;
+  animation: gentlePulse 2s infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+.fun-fact-content p {
+  color: var(--text);
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.fun-fact-content strong {
+  color: var(--secondary);
+}
+
+/* Platform Access Note */
+.platform-access-note {
+  max-width: 1200px;
+  margin: 4rem auto 0 auto;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+  color: white;
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  text-align: center;
+  border: 2px solid var(--primary);
+  backdrop-filter: blur(10px);
+}
+
+.access-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.access-icon {
+  /* BAckground solid color with opacity */
+  background-color:var(--primary) ;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.access-content h4 {
+  color: var(--text);
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  text-align: left;
+}
+
+.access-content p {
+  color: var(--text-secondary);
+  text-align: left;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive Design for Problems Section */
+@media (max-width: 1024px) {
+  .problems-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .problems-section {
+    padding: 6rem 1.5rem;
+  }
+  
+  .problems-section h2 {
+    font-size: 2.2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .problems-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .problem-card {
+    padding: 2rem;
+  }
+  
+  .problem-card.main-problem {
+    grid-column: 1;
+  }
+  
+  .scenario-issues {
+    grid-template-columns: 1fr;
+  }
+  
+  .access-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .access-content h4,
+  .access-content p {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .problems-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .problem-card {
+    padding: 1.5rem;
+  }
+  
+  .problem-card h3 {
+    font-size: 1.3rem;
+  }
+  
+  .wazi-solution {
+    padding: 1.25rem;
+  }
+  
+  .platform-access-note {
+    padding: 1.5rem;
+    margin: 3rem 1rem 0 1rem;
+  }
+}
